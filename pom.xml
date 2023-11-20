@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <junit.version>5.8.0</junit.version>
+        <junit.version>5.9.2</junit.version>
     </properties>
 
     <dependencies>
@@ -61,19 +61,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Add Docker-related plugins here -->
-            <!-- Example: Spotify Docker Plugin -->
-            <!--
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.2.0</version>
-                <configuration>
-                    <imageName>your-docker-image-name</imageName>
-                    <!-- Add more Docker configuration here -->
-                </configuration>
-            </plugin>
-            -->
-        </plugins>
+
+</plugins>
     </build>
-</project>
+        </project>
