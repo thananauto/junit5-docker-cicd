@@ -79,7 +79,7 @@ CMD ["test", "-Denv.name=${name}]
 ```
 
 we can have multiple `ARG` command in Docker file
- 
+
  Build the docker image with mandatory arguments name (required): Pass a custom value during the build process.
 ```bash
 docker build --build-arg name=<your_argument_value> -t my-maven-app .
@@ -126,6 +126,10 @@ On starting the container pass the `-e` flag as well
 docker run -e env_name=<your_value> my-maven-app
 
 ```
-
+## TODO
+1. Docker-compose
+2. Docker-network
+3. Volume mounting
+4. Push image to Docker Registry
 ## Contributing
 If you have suggestions or improvements, feel free to open an issue or submit a pull request.
