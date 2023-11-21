@@ -40,7 +40,7 @@
             </properties>
         </profile>
     </profiles>
-    
+
     <dependencies>
         <!-- JUnit 5 dependencies -->
         <dependency>
@@ -62,6 +62,15 @@
     </dependencies>
 
     <build>
+     <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>env.properties</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <!-- Maven Surefire Plugin for running tests -->
             <plugin>
