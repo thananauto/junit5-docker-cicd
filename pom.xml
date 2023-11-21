@@ -14,6 +14,33 @@
         <junit.version>5.9.2</junit.version>
     </properties>
 
+     <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.username>root-test</db.username>
+                <db.password>testpwd</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <db.username>root-dev</db.username>
+                <db.password>devpwd</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>stage</id>
+            <properties>
+                <db.username>root-stage</db.username>
+                <db.password>stagepwd</db.password>
+            </properties>
+        </profile>
+    </profiles>
+    
     <dependencies>
         <!-- JUnit 5 dependencies -->
         <dependency>
