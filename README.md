@@ -64,6 +64,7 @@ After successfull exit(0) of container, the execution result can be found in `ou
 
 For more customisation we can use the  `ARG` and `ENV` command of Docker
 
+## Arguments
 ```Docker
 FROM alpine:3.14
 RUN apk update && apk add openjdk11 && apk add maven
@@ -77,6 +78,8 @@ ENTRYPOINT ["mvn"]
 CMD ["test", "-Denv.name=${name}]
 ```
 
+we can have multiple `ARG` command in Docker file
+ 
  Build the docker image with mandatory arguments name (required): Pass a custom value during the build process.
 ```bash
 docker build --build-arg name=<your_argument_value> -t my-maven-app .
