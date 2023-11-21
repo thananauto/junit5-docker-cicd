@@ -58,4 +58,71 @@ docker run -it -v `pwd`/output:/app/target my-maven-app verify -P profile
 
 ```
 
-After successfull exit(0) of container, the execution result can be found in `output` directory
+After successfull exit(0) of container, the execution result can be found in `output` directory of host
+
+--------------------------
+
+For more customisation we can use the  `ARG` and `ENV` command of Docker
+
+```Docker
+FROM alpine:3.14
+RUN apk update && apk add openjdk11 && apk add maven
+# build argument that can be passed during the build process
+ARG name
+WORKDIR /app
+COPY src src
+COPY pom.xml .
+ENTRYPOINT ["mvn"]
+# pass the name as mvn command line arguments
+CMD ["test", "-Denv.name=${name}]
+```
+
+ Build the docker image with mandatory arguments name (required): Pass a custom value during the build process.
+```bash
+docker build --build-arg name=<your_argument_value> -t my-maven-app .
+
+```
+
+Once container starts the test will execute 
+```bash  
+docker run -it -v `pwd`/output:/app/target my-maven-app
+```
+Note: If we pass any `CMD` as after argument on start the of container the default maven command line argument will overwrite
+
+For example
+```bash  
+docker run -it -v `pwd`/output:/app/target my-maven-app verify
+
+```
+This `verify` command will overwrite the `["test", "-Denv.name=${name}]` 
+
+--------------------------------------------
+
+## Environment variable
+Environment variable is really handy when we try to spinup the container without modifiy the original `image`
+
+```Docker
+FROM alpine:3.14
+RUN apk update && apk add openjdk11 && apk add maven
+# environment variable could be assigned from -e during container initialization
+ENV env_name $env_name
+WORKDIR /app
+COPY src src
+COPY pom.xml .
+ENTRYPOINT ["mvn"]
+# pass the name as mvn command line arguments
+CMD ["test", "-Denv.name=${env_name}]
+```
+
+ Build the docker image
+```bash
+docker build -t my-maven-app .
+```
+On starting the container pass the `-e` flag as well
+```bash
+docker run -e env_name=<your_value> my-maven-app
+
+```
+
+## Contributing
+If you have suggestions or improvements, feel free to open an issue or submit a pull request.
